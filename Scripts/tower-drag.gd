@@ -12,6 +12,7 @@ const tt_icon = [
 	"res://Assets/PNG/Default size/Structure/medievalStructure_18.png"
 ]
 export (tt) var tower_type: int = 0 setget set_tower_type
+
 func set_tower_type(new_val):
 	tower_type = new_val
 	icon = load(tt_icon[tower_type])

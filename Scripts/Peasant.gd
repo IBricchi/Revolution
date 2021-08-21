@@ -7,7 +7,7 @@ onready var game : Node = $"/root/game"
 var path_follow 
 
 var move_direction = 0
-var speed = 30
+var speed = 400
 var time_since_last_anim : float = 0
 var time_between_animations : float = rand_range(0.15, 0.4)
 
@@ -57,4 +57,5 @@ func set_remote_path(path : Node2D):
 func got_killed():
 	game.enemies.erase(self)
 	Global.enemies_defeated += 1
+	game.money += 5
 	self.queue_free()
