@@ -62,4 +62,5 @@ func got_killed():
 	game.enemies.erase(self)
 	Global.enemies_defeated += 1
 	game.money += 5
-	self.queue_free()
+	get_parent().remove_child(self)
+	queue_free()
