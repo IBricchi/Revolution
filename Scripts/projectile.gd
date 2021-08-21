@@ -2,12 +2,15 @@ extends Area2D
 
 var target: Node2D = null
 var move_dir: Vector2
-var speed: float = 200
-var power: int = 1
+var speed: float = 200 setget set_speed
+var power: int = 1 
 var time_limit: float = 5
 
 func _ready():
 	connect("body_entered", self, "_entered")
+	
+func set_speed(val):
+	speed = val
 
 func _physics_process(delta):
 	if target != null:

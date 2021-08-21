@@ -14,6 +14,8 @@ func _ready():
 var follow_mouse: bool = false
 var in_valid_pos: bool = false
 var price : int
+var shot_speed : float
+var projectile_lifetime : float
 
 func set_icon(in_icon):
 	$icon.icon = in_icon
@@ -23,6 +25,12 @@ func set_rad(in_rad):
 	
 func set_price(newprice):
 	price = newprice
+	
+func set_shot_speed(val):
+	shot_speed = val
+
+func set_projectile_lifetime(val):
+	projectile_lifetime = val
 
 var in_col: Array = []
 func _on_col_enter(obj):
@@ -91,4 +99,4 @@ func shoot_at(target):
 	var proj = projectile.instance()
 	add_child(proj)
 	proj.set_target(target)
-	proj.set_death_timer(2)
+	proj.set_death_timer(projectile_lifetime)
