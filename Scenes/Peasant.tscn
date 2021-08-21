@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/PNG/Retina/Unit/medievalUnit_03.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Peasant.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Particles/scratch_01.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Particles/magic_04.png" type="Texture" id=4]
 
 [node name="Peasant" type="KinematicBody2D" groups=[
 "enemy",
@@ -15,3 +17,53 @@ texture = ExtResource( 1 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2( 0.4, 0.4 )
 polygon = PoolVector2Array( 15.0858, 21.4039, 15.0858, -24.0319, -8.07759, -23.141, -16.9866, -11.7821, -18.3229, 14.054, -13.2003, 21.4039 )
+
+[node name="deathparticles2" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+randomness = 0.3
+lifetime_randomness = 0.29
+texture = ExtResource( 4 )
+emission_shape = 1
+emission_sphere_radius = 20.0
+direction = Vector2( 1, 1 )
+spread = 108.46
+gravity = Vector2( 0, 0 )
+initial_velocity = 4.0
+initial_velocity_random = 1.0
+angular_velocity = 1.0
+angular_velocity_random = 0.58
+radial_accel = 3.85
+angle = 1.0
+angle_random = 0.34
+scale_amount = 0.05
+color = Color( 0.211765, 0.313726, 0.756863, 1 )
+
+[node name="deathparticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 5
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+randomness = 0.3
+lifetime_randomness = 0.29
+texture = ExtResource( 3 )
+emission_shape = 1
+emission_sphere_radius = 1.82
+direction = Vector2( 1, 1 )
+spread = 108.46
+gravity = Vector2( 0, 0 )
+initial_velocity = 2.0
+angular_velocity = 1.0
+angular_velocity_random = 0.58
+radial_accel = 3.85
+angle = 1.0
+angle_random = 0.34
+scale_amount = 0.05
+color = Color( 0.803922, 0.12549, 0.12549, 1 )
+
+[node name="deathtimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="deathtimer" to="." method="_on_deathtimer_timeout"]

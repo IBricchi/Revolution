@@ -2,12 +2,14 @@ extends KinematicBody2D
 
 var offset_from_path : Vector2 =  Vector2(rand_range(-6,6) , rand_range(-6,6)) 
 onready var game : Node = $"/root/game"
-
+onready var deathparticles : CPUParticles2D = $deathparticles
+onready var deathparticles2 : CPUParticles2D = $deathparticles2
+onready var deathtimer = $deathtimer
 
 var path_follow 
 
 var move_direction = 0
-var speed = 400
+var speed = 30
 var time_since_last_anim : float = 0
 var time_between_animations : float = rand_range(0.15, 0.4)
 var health = 1
@@ -62,4 +64,10 @@ func got_killed():
 	game.enemies.erase(self)
 	Global.enemies_defeated += 1
 	game.money += 5
+	deathparticles.emitting = true
+	deathparticles2.emitting = true
+	deathtimer.start(0.5)
+
+
+func _on_deathtimer_timeout():
 	self.queue_free()

@@ -10,7 +10,7 @@ func _ready():
 	prompt.text = "My liege, the castle was destroyed by those vermin.\n You managed to survive %d waves, while killing %d of those peasants, quite an achievement your Highness." % [Global.wave_number , Global.enemies_defeated]
 
 func _on_mm():
-	get_tree().change_scene("res://Scenes/game.tscn")
+	get_tree().change_scene("res://Scenes/title_screen.tscn")
 
 func _on_play():
 	get_tree().change_scene("res://Scenes/game.tscn")
