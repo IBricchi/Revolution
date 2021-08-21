@@ -41,7 +41,7 @@ func MovementLoop(delta : float) :
 	position = pos + offset_from_path
 	visible = true
 	move_direction = pos.angle_to_point(prepos)  
-	if move_direction <= PI/ 2 and move_direction >= - PI / 2 : 
+	if move_direction <= PI/ 2 and move_direction >= - PI / 2: 
 		scale.x = -1
 	else:
 		scale.x = 1
@@ -59,15 +59,18 @@ func take_damage(ammount):
 
 func set_remote_path(path : Node2D):
 	path_follow = path
-	
-func got_killed():
-	game.enemies.erase(self)
-	Global.enemies_defeated += 1
-	game.money += 5
 
-	deathparticles.emitting = true
-	deathparticles2.emitting = true
-	deathtimer.start(0.5)
+var can_die: bool = true;
+func got_killed():
+	if can_die:
+		can_die = false
+		game.enemies.erase(self)
+		Global.enemies_defeated += 1
+		game.money += 5
+
+		deathparticles.emitting = true
+		deathparticles2.emitting = true
+		deathtimer.start(0.5)
 
 
 func _on_deathtimer_timeout():
