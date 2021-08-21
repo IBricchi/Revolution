@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://land_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_02.png" type="Texture" id=2]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_06.png" type="Texture" id=3]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_05.png" type="Texture" id=4]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_01.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/beam_rad.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/game.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/ui.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Beam.gd" type="Script" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -91,5 +93,15 @@ curve = SubResource( 2 )
 curve = SubResource( 3 )
 
 [node name="WaveTimer" type="Timer" parent="."]
+
+[node name="beam" type="Area2D" parent="."]
+position = Vector2( 480, 300 )
+z_index = 1
+script = ExtResource( 9 )
+
+[node name="col" type="CollisionPolygon2D" parent="beam"]
+rotation = -0.0148401
+polygon = PoolVector2Array( -30, 0, 30, 0, 120, -800, -120, -800 )
+script = ExtResource( 6 )
 
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
