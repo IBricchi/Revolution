@@ -3,7 +3,9 @@
 [ext_resource path="res://Assets/PNG/Retina/Unit/medievalUnit_03.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Peasant.gd" type="Script" id=2]
 
-[node name="Peasant" type="KinematicBody2D"]
+[node name="Peasant" type="KinematicBody2D" groups=[
+"enemy",
+]]
 script = ExtResource( 2 )
 
 [node name="Buffoon" type="Sprite" parent="."]

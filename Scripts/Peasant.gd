@@ -1,16 +1,17 @@
 extends KinematicBody2D
 
 
-onready var path_follow = get_parent()
+var path_follow 
 
 var move_direction = 0
-var speed = 50
+var speed = 25
 var time_since_last_anim : float = 0
 var time_between_animations : float = rand_range(0.15, 0.4)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
+
 
 func _physics_process(delta):
 	time_since_last_anim += delta
@@ -20,15 +21,20 @@ func _physics_process(delta):
 		if rotation_degrees < 0 : 
 			rotation_degrees = rot
 		else: rotation_degrees = -rot
-		
 	MovementLoop(delta)
 
 func MovementLoop(delta : float) : 
 	var prepos = path_follow.get_global_position()
 	path_follow.set_offset(path_follow.get_offset() + speed * delta)
 	var pos = path_follow.get_global_position()	
-	move_direction = (pos.angle_to_point(prepos) / PI)*180
-	if move_direction <= 90 and move_direction >= - 90 : 
+	move_direction = pos.angle_to_point(prepos)  
+	if move_direction <= PI/ 2 and move_direction >= - PI / 2 : 
 		scale.x = -1
 	else:
 		scale.x = 1
+
+
+
+func set_remote_path(path : Node):
+	path_follow = path
+	print(path_follow)
