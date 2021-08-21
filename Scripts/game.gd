@@ -1,8 +1,8 @@
 extends Node2D
 
-var wave_number : int = 0 
-
 var enemies = []
+
+var castle_hitpoints : int = 100
 
 onready var wavetimer : Timer = $WaveTimer
 onready var ysort : YSort = $"Enemies Ysort"
@@ -12,27 +12,32 @@ onready var path3 : Path2D = $"Third Path"
 
 var peasant : Resource = preload("res://Scenes/Peasant.tscn")
 var peasantpath : Resource = preload("res://Scenes/PeasantPath.tscn")
+var wave_defeated : bool = false
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	Global.wave_number = 0
+	Global.enemies_defeated = 0
 	randomize()
-	wavetimer.one_shot = false
-	wavetimer.start(4)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
-func _on_WaveTimer_timeout():
+	wavetimer.one_shot = true
 	wave_start()
+	
+
+
+func _process(delta):
+	if castle_hitpoints <= 0 :
+		game_over()
+	if enemies.empty():
+		wave_start()
+	
+		
+
 	
 	
 func wave_start(): 
-	wave_number += 1
-	var peasant_number = wave_number * 3
+	if castle_hitpoints > 0 : 
+		Global.wave_number += 1
+	var peasant_number = Global.wave_number * 3
 	
 	for i in range(peasant_number):
 		var prob : float = randf()
@@ -52,9 +57,12 @@ func wave_start():
 		peas.set_remote_path(remotepath)
 		
 		
-		peas.translate(Vector2(rand_range(-3,3) , rand_range(-3,3)))
-		yield(get_tree().create_timer(0.1), "timeout")
+		
+		yield(get_tree().create_timer(0.25), "timeout")
+		
+	
 
-
+func game_over():
+	get_tree().change_scene("res://Scenes/death_screen.tscn")
 
 

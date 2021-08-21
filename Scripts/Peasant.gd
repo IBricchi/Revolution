@@ -1,12 +1,16 @@
 extends KinematicBody2D
 
+var offset_from_path : Vector2 =  Vector2(rand_range(-6,6) , rand_range(-6,6)) 
+onready var game : Node = $"/root/game"
+
 
 var path_follow 
 
 var move_direction = 0
-var speed = 25
+var speed = 30
 var time_since_last_anim : float = 0
 var time_between_animations : float = rand_range(0.15, 0.4)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,12 +29,14 @@ func _physics_process(delta):
 			rotation_degrees = rot
 		else: rotation_degrees = -rot
 	MovementLoop(delta)
+	if path_follow.get_unit_offset() > 0.995:
+		arrived_at_castle()
 
 func MovementLoop(delta : float) : 
 	var prepos = path_follow.get_global_position()
 	path_follow.set_offset(path_follow.get_offset() + speed * delta)
 	var pos = path_follow.get_global_position()
-	position = pos
+	position = pos + offset_from_path
 	visible = true
 	move_direction = pos.angle_to_point(prepos)  
 	if move_direction <= PI/ 2 and move_direction >= - PI / 2 : 
@@ -38,5 +44,17 @@ func MovementLoop(delta : float) :
 	else:
 		scale.x = 1
 
+func arrived_at_castle():
+	game.enemies.erase(self)
+	game.castle_hitpoints -= 1
+	
+	self.queue_free()
+
+
 func set_remote_path(path : Node2D):
 	path_follow = path
+	
+func got_killed():
+	game.enemies.erase(self)
+	Global.enemies_defeated += 1
+	self.queue_free()
