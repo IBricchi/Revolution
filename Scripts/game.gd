@@ -14,26 +14,19 @@ var peasant : Resource = preload("res://Scenes/Peasant.tscn")
 var peasantpath : Resource = preload("res://Scenes/PeasantPath.tscn")
 var wave_defeated : bool = false
 
-
 func _ready():
 	Global.wave_number = 0
 	Global.enemies_defeated = 0
 	randomize()
 	wavetimer.one_shot = true
 	wave_start()
-	
-
 
 func _process(delta):
 	if castle_hitpoints <= 0 :
 		game_over()
 	if enemies.empty():
 		wave_start()
-	
-		
 
-	
-	
 func wave_start(): 
 	if castle_hitpoints > 0 : 
 		Global.wave_number += 1
@@ -56,11 +49,7 @@ func wave_start():
 		
 		peas.set_remote_path(remotepath)
 		
-		
-		
 		yield(get_tree().create_timer(0.25), "timeout")
-		
-	
 
 func game_over():
 	get_tree().change_scene("res://Scenes/death_screen.tscn")
