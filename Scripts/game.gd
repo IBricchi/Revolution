@@ -3,7 +3,7 @@ extends Node2D
 var enemies = []
 
 var castle_hitpoints : int = 100
-export var money : int = 500 setget set_money
+export var money : int = 100 setget set_money
 
 onready var wavetimer : Timer = $WaveTimer
 onready var ysort : YSort = $"Enemies Ysort"

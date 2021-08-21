@@ -16,8 +16,10 @@ export (tt) var tower_type: int = 0 setget set_tower_type
 func set_tower_type(new_val):
 	tower_type = new_val
 	icon = load(tt_icon[tower_type])
+	
 
 export var radius: int = 25
+export var price : int = 15
 
 func _ready():
 	connect("button_up", self, "_on_button_up")
@@ -27,5 +29,6 @@ func _on_button_up():
 	get_tree().get_root().add_child(new_tower)
 	new_tower.follow_mouse = true
 	new_tower.set_icon(icon)
-	new_tower.set_rad(radius)
+	new_tower.set_rad(radius) 
+	new_tower.set_price(price)
 	
