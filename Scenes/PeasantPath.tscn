@@ -2,6 +2,3 @@
 
 [node name="PathFollow2D" type="PathFollow2D"]
 rotate = false
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
-use_global_coordinates = false

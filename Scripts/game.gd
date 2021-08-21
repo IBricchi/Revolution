@@ -42,15 +42,13 @@ func wave_start():
 		ysort.add_child(peas)
 		enemies.append(peas)
 		
-		
 		if prob < 0.33333: 
 			path1.add_child(remotepath)
 		elif prob < 0.66667:
 			path2.add_child(remotepath)
 		else:
 			path3.add_child(remotepath)
-			
-		remotepath.get_child(0).remote_path = peas.get_path()
+		
 		peas.set_remote_path(remotepath)
 		
 		

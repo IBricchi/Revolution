@@ -26,15 +26,13 @@ func _physics_process(delta):
 func MovementLoop(delta : float) : 
 	var prepos = path_follow.get_global_position()
 	path_follow.set_offset(path_follow.get_offset() + speed * delta)
-	var pos = path_follow.get_global_position()	
+	var pos = path_follow.get_global_position()
+	position = pos
 	move_direction = pos.angle_to_point(prepos)  
 	if move_direction <= PI/ 2 and move_direction >= - PI / 2 : 
 		scale.x = -1
 	else:
 		scale.x = 1
 
-
-
-func set_remote_path(path : Node):
+func set_remote_path(path : Node2D):
 	path_follow = path
-	print(path_follow)

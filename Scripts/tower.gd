@@ -6,6 +6,8 @@ func _ready():
 	$col.connect("area_exited", self, "_on_col_exit")
 	$col.connect("body_entered", self, "_on_col_enter")
 	$col.connect("body_exited", self, "_on_col_exit")
+	$rad.connect("body_entered", self, "_on_rad_enter")
+	$rad.connect("body_exited", self, "_on_rad_exit")
 
 var follow_mouse: bool = false
 var in_valid_pos: bool = false
