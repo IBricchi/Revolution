@@ -73,26 +73,25 @@ func _on_rad_exit(obj):
 	if pos != -1:
 		in_rad.remove(pos)
 
-var is_active: bool = true
+var is_active: bool = false
 var wait_time_max: float = 5
 var wait_time: float = 0
 func _physics_process(delta):
-	if is_active and not follow_mouse:
-		if wait_time <= 0:
-			# largest int godot handles
-			var min_idx: int = 9223372036854775807
-			var target = null
-			for obj in in_rad:
-				if obj.is_in_group("enemy"):
-					var idx: int = obj.get_index()
-					if idx < min_idx:
-						min_idx = idx
-						target = obj
-			if target != null:
-				shoot_at(target)
-				wait_time = wait_time_max
-		else:
-			wait_time -= delta
+	if is_active and not follow_mouse and wait_time <= 0:
+		# largest int godot handles
+		var min_idx: int = 9223372036854775807
+		var target = null
+		for obj in in_rad:
+			if obj.is_in_group("enemy"):
+				var idx: int = obj.get_index()
+				if idx < min_idx:
+					min_idx = idx
+					target = obj
+		if target != null:
+			shoot_at(target)
+			wait_time = wait_time_max
+	else:
+		wait_time -= delta
 
 const projectile = preload("res://Scenes/projectile.tscn")
 func shoot_at(target):
