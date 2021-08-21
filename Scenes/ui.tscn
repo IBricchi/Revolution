@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_18.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/tower-drag.gd" type="Script" id=2]
+[ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_17.png" type="Texture" id=3]
+
+[node name="ui" type="HBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="empty" type="MarginContainer" parent="."]
+margin_right = 924.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="towers" type="MarginContainer" parent="."]
+margin_left = 928.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="list" type="VBoxContainer" parent="towers"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 86.0
+margin_bottom = 590.0
+
+[node name="tower-1" type="Button" parent="towers/list"]
+margin_right = 76.0
+margin_bottom = 70.0
+icon = ExtResource( 3 )
+flat = true
+script = ExtResource( 2 )
+
+[node name="tower-2" type="Button" parent="towers/list"]
+margin_top = 74.0
+margin_right = 76.0
+margin_bottom = 144.0
+icon = ExtResource( 1 )
+flat = true
+script = ExtResource( 2 )
+tower_type = 1

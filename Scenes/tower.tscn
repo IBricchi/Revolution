@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_18.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/tower.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="tower" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="icon" type="Button" parent="."]
+margin_right = 76.0
+margin_bottom = 70.0
+size_flags_horizontal = 5
+icon = ExtResource( 1 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="area" type="CollisionShape2D" parent="."]
+position = Vector2( 32, 32 )
+shape = SubResource( 1 )
