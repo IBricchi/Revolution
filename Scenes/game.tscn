@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://land_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_02.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_01.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Peasant.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/game.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/ui.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -74,3 +75,6 @@ scale = Vector2( 0.4, 0.4 )
 [node name="Peasant2" parent="Path2D/PathFollow2D" instance=ExtResource( 6 )]
 position = Vector2( -8.48529, -2.82843 )
 scale = Vector2( 0.4, 0.4 )
+
+[node name="ui" parent="." instance=ExtResource( 8 )]
+margin_right = 0.0
