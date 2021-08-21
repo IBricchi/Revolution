@@ -9,7 +9,7 @@ onready var deathtimer = $deathtimer
 var path_follow 
 
 var move_direction = 0
-var speed = 30
+var speed = rand_range(30,35)
 var time_since_last_anim : float = 0
 var time_between_animations : float = rand_range(0.15, 0.4)
 var health = 1
@@ -19,7 +19,7 @@ func _ready():
 	# set visible to false until first position is set to avoid
 	# glitchy appearances at (0, 0) between instantiation and setting pos
 	visible = false
-	pass
+	speed += Global.wave_number * 100.5
 
 
 func _physics_process(delta):

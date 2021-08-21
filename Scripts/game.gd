@@ -2,7 +2,7 @@ extends Node2D
 
 var enemies = []
 
-var castle_hitpoints : int = 100
+var castle_hitpoints : int = 100 setget set_castle_hp
 export var money : int = 100 setget set_money
 
 onready var wavetimer : Timer = $WaveTimer
@@ -11,6 +11,7 @@ onready var path1 : Path2D = $"First Path"
 onready var path2 : Path2D = $"Second Path"
 onready var path3 : Path2D = $"Third Path"
 onready var ui : Node = $"ui"
+onready var hpbar : Control = $HealthBar
 
 var peasant : Resource = preload("res://Scenes/Peasant.tscn")
 var peasantpath : Resource = preload("res://Scenes/PeasantPath.tscn")
@@ -33,7 +34,7 @@ func wave_start():
 	set_money(money + Global.wave_number * 50)
 	if castle_hitpoints > 0 : 
 		Global.wave_number += 1
-	var peasant_number = Global.wave_number * 3
+	var peasant_number = int(Global.wave_number * 5 *rand_range(1,2))
 	
 	for i in range(peasant_number):
 		var prob : float = randf()
@@ -66,3 +67,7 @@ func game_over():
 func set_money(newval):
 	money = newval
 	ui.display_money(newval)
+	
+func set_castle_hp(newval):
+	castle_hitpoints = newval
+	hpbar.display_health(newval)

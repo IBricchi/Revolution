@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://land_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_02.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scripts/game.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/ui.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Beam.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -103,5 +104,7 @@ script = ExtResource( 9 )
 rotation = -0.0148401
 polygon = PoolVector2Array( -30, 0, 30, 0, 120, -800, -120, -800 )
 script = ExtResource( 6 )
+
+[node name="HealthBar" parent="." instance=ExtResource( 10 )]
 
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]
