@@ -2,10 +2,12 @@ extends Node2D
 
 func _ready():
 	$icon.connect("button_up", self, "_tower_placed")
+	
 	$col.connect("area_entered", self, "_on_col_enter")
 	$col.connect("area_exited", self, "_on_col_exit")
 	$col.connect("body_entered", self, "_on_col_enter")
 	$col.connect("body_exited", self, "_on_col_exit")
+	
 	$rad.connect("body_entered", self, "_on_rad_enter")
 	$rad.connect("body_exited", self, "_on_rad_exit")
 
@@ -23,7 +25,7 @@ func _on_col_enter(obj):
 	in_col.push_back(obj)
 func _on_col_exit(obj):
 	var pos = in_col.find(obj)
-	if not pos == -1:
+	if pos != -1:
 		in_col.remove(pos)
 
 func on_valid_position():
@@ -49,3 +51,39 @@ func _tower_placed():
 		follow_mouse = false
 		$rad/rad.color_mode = 0
 		$rad/rad.update()
+
+var in_rad: Array = []
+func _on_rad_enter(obj):
+	in_rad.push_back(obj)
+func _on_rad_exit(obj):
+	var pos = in_rad.find(obj)
+	if pos != -1:
+		in_rad.remove(pos)
+
+var is_active: bool = true
+var wait_time_max: float = 5
+var wait_time: float = 0
+func _physics_process(delta):
+	if is_active:
+		if wait_time <= 0:
+			# largest int godot handles
+			var min_idx: int = 9223372036854775807
+			var target = null
+			for obj in in_rad:
+				if obj.is_in_group("enemy"):
+					var idx: int = obj.get_index()
+					if idx < min_idx:
+						min_idx = idx
+						target = obj
+			if target != null:
+				shoot_at(target)
+				wait_time = wait_time_max
+		else:
+			wait_time -= delta
+
+const projectile = preload("res://Scenes/projectile.tscn")
+func shoot_at(target):
+	var proj = projectile.instance()
+	proj.set_target(target)
+	proj.set_death_timer(1)
+	add_child(proj)

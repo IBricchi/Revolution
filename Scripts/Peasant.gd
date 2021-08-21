@@ -10,6 +10,9 @@ var time_between_animations : float = rand_range(0.15, 0.4)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# set visible to false until first position is set to avoid
+	# glitchy appearances at (0, 0) between instantiation and setting pos
+	visible = false
 	pass
 
 
@@ -28,6 +31,7 @@ func MovementLoop(delta : float) :
 	path_follow.set_offset(path_follow.get_offset() + speed * delta)
 	var pos = path_follow.get_global_position()
 	position = pos
+	visible = true
 	move_direction = pos.angle_to_point(prepos)  
 	if move_direction <= PI/ 2 and move_direction >= - PI / 2 : 
 		scale.x = -1
