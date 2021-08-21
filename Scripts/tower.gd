@@ -36,7 +36,7 @@ func on_valid_position():
 
 func _input(event):
 	if follow_mouse and event is InputEventMouseMotion:
-		position = event.position - Vector2(32,32)
+		position = event.position
 		if not in_valid_pos == on_valid_position():
 			in_valid_pos = not in_valid_pos
 			change_rad_color(in_valid_pos)
@@ -64,7 +64,7 @@ var is_active: bool = true
 var wait_time_max: float = 5
 var wait_time: float = 0
 func _physics_process(delta):
-	if is_active:
+	if is_active and not follow_mouse:
 		if wait_time <= 0:
 			# largest int godot handles
 			var min_idx: int = 9223372036854775807
@@ -84,6 +84,6 @@ func _physics_process(delta):
 const projectile = preload("res://Scenes/projectile.tscn")
 func shoot_at(target):
 	var proj = projectile.instance()
-	proj.set_target(target)
-	proj.set_death_timer(1)
 	add_child(proj)
+	proj.set_target(target)
+	proj.set_death_timer(2)
