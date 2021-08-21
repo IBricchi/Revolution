@@ -1,23 +1,42 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_18.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/tower.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/tower_rad.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="tower" type="Area2D"]
+[sub_resource type="CircleShape2D" id=2]
+radius = 35.0
+
+[node name="tower" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="icon" type="Button" parent="."]
 margin_right = 76.0
 margin_bottom = 70.0
+focus_mode = 0
 size_flags_horizontal = 5
+enabled_focus_mode = 0
 icon = ExtResource( 1 )
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="area" type="CollisionShape2D" parent="."]
-position = Vector2( 32, 32 )
+[node name="col" type="Area2D" parent="." groups=[
+"tower",
+]]
+
+[node name="col" type="CollisionShape2D" parent="col"]
+position = Vector2( 38, 36.8775 )
+scale = Vector2( 2.8, 2.8 )
 shape = SubResource( 1 )
+
+[node name="rad" type="Area2D" parent="."]
+
+[node name="rad" type="CollisionShape2D" parent="rad"]
+position = Vector2( 38, 36.8775 )
+scale = Vector2( 2.8, 2.8 )
+shape = SubResource( 2 )
+script = ExtResource( 3 )
