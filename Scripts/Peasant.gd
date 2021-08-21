@@ -64,10 +64,12 @@ func got_killed():
 	game.enemies.erase(self)
 	Global.enemies_defeated += 1
 	game.money += 5
+
 	deathparticles.emitting = true
 	deathparticles2.emitting = true
 	deathtimer.start(0.5)
 
 
 func _on_deathtimer_timeout():
-	self.queue_free()
+	get_parent().remove_child(self)
+	queue_free() 

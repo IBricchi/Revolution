@@ -16,7 +16,6 @@ func _physics_process(delta):
 		check_timer(delta)
 
 func _entered(obj):
-	print(obj.get_name())
 	if obj.is_in_group("enemy"):
 		damage(obj)
 		check_hit()

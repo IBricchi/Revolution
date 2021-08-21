@@ -55,6 +55,12 @@ func wave_start():
 		yield(get_tree().create_timer(0.25), "timeout")
 
 func game_over():
+	var a = get_tree().get_root();
+	var b = a.get_children();
+	for obj in get_tree().get_root().get_children():
+		if obj.is_in_group("tower"):
+			obj.get_parent().remove_child(obj)
+			obj.queue_free()
 	get_tree().change_scene("res://Scenes/death_screen.tscn")
 
 func set_money(newval):
