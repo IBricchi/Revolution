@@ -13,12 +13,16 @@ func _ready():
 
 var follow_mouse: bool = false
 var in_valid_pos: bool = false
+var price : int
 
 func set_icon(in_icon):
 	$icon.icon = in_icon
 
 func set_rad(in_rad):
 	$rad/rad.shape.radius = in_rad
+	
+func set_price(newprice):
+	price = newprice
 
 var in_col: Array = []
 func _on_col_enter(obj):
@@ -47,10 +51,11 @@ func change_rad_color(new_val):
 
 func _tower_placed():
 	if in_valid_pos and follow_mouse:
-		$icon.disconnect("button_up", self, "_tower_palced")
+		$icon.disconnect("button_up", self, "_tower_placed")
 		follow_mouse = false
 		$rad/rad.color_mode = 0
 		$rad/rad.update()
+		$"/root/game".set_money($"/root/game".money - price)
 
 var in_rad: Array = []
 func _on_rad_enter(obj):

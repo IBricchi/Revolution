@@ -54,3 +54,4 @@ flat = true
 script = ExtResource( 2 )
 tower_type = 1
 radius = 50
+price = 40
