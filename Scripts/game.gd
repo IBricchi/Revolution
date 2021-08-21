@@ -3,12 +3,14 @@ extends Node2D
 var enemies = []
 
 var castle_hitpoints : int = 100
+export var money : int = 500 setget set_money
 
 onready var wavetimer : Timer = $WaveTimer
 onready var ysort : YSort = $"Enemies Ysort"
 onready var path1 : Path2D = $"First Path"
 onready var path2 : Path2D = $"Second Path"
 onready var path3 : Path2D = $"Third Path"
+onready var ui : Node = $"ui"
 
 var peasant : Resource = preload("res://Scenes/Peasant.tscn")
 var peasantpath : Resource = preload("res://Scenes/PeasantPath.tscn")
@@ -28,6 +30,7 @@ func _process(delta):
 		wave_start()
 
 func wave_start(): 
+	set_money(money + Global.wave_number * 50)
 	if castle_hitpoints > 0 : 
 		Global.wave_number += 1
 	var peasant_number = Global.wave_number * 3
@@ -54,4 +57,6 @@ func wave_start():
 func game_over():
 	get_tree().change_scene("res://Scenes/death_screen.tscn")
 
-
+func set_money(newval):
+	money = newval
+	ui.display_money(newval)
