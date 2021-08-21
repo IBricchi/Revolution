@@ -30,11 +30,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="cont/title"]
-margin_left = 437.0
-margin_top = 206.0
-margin_right = 557.0
-margin_bottom = 220.0
-text = "R E V O L U T I O N"
+margin_left = 377.0
+margin_top = 180.0
+margin_right = 617.0
+margin_bottom = 245.0
+text = "R E V O L U T I O N
+
+
+My liege, the peasants are revolting ! "
+align = 1
 
 [node name="cont" type="MarginContainer" parent="cont"]
 margin_top = 430.0
