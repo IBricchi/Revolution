@@ -1,12 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://land_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_02.png" type="Texture" id=2]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_06.png" type="Texture" id=3]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_05.png" type="Texture" id=4]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_01.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Peasant.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/game.gd" type="Script" id=7]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 485.751, 5.55627, 5.82705, -14.5676, -5.82705, 14.5676, 484.427, 20.1239, 0, 0, 0, 0, 459.794, 33.632, 14.5676, -0.264866, -14.5676, 0.264866, 430.394, 33.632, 18.5406, -2.11893, -18.5406, 2.11893, 394.107, 26.7455, 19.8649, -0.794597, -19.8649, 0.794597, 367.621, 36.8104, 13.4695, 0.841847, -13.4695, -0.841847, 338.548, 28.3214, 15.0129, -0.561231, -15.0129, 0.561231, 304.92, 38.3451, 20.792, -1.45676, -20.792, 1.45676, 270.833, 28.1865, 20.1525, 3.53553, -20.1525, -3.53553, 231.897, 37.1919, 21.2035, -2.88367, -21.2035, 2.88367, 175.042, 32.5034, 18.8055, 2.91352, -18.8055, -2.91352, 139.354, 31.4225, 8.74057, -9.80003, -8.74057, 9.80003, 93.9456, 41.5133, -3.17839, -19.6001, 3.17839, 19.6001, 99.8319, 81.0354, -0.561231, -17.3982, 0.561231, 17.3982, 92.0766, 119, -1.12246, -8.13785, 1.12246, 8.13785, 99.8319, 150.83, -4.36535, -18.652, 4.36535, 18.652, 93.1047, 196.238, -14.6835, -7.54015, 14.6835, 7.54015, 107.932, 226.098, -22.2236, -1.98425, 22.2236, 1.98425, 148.014, 220.146, -16.2709, -0.7937, 16.2709, 0.7937, 176.587, 229.67, 0, 0, 0, 0, 221.632, 221.043, 3.1748, 12.3024, -3.1748, -12.3024, 227.585, 201.201, -1.5874, 12.3024, 1.5874, -12.3024, 219.447, 178.873, 0, 0, 0, 0, 233.337, 164.587, -12.6992, -1.5874, 12.6992, 1.5874, 276.197, 156.65, 0, 0, 0, 0, 285.525, 194.454, 7.1433, -9.12755, -7.1433, 9.12755, 287.308, 227.686, 0, 0, 0, 0, 285.721, 244.75, 0, -12.4867, 0, 12.4867, 292.071, 269.752, 0.297302, -13.6759, -0.297302, 13.6759, 284.927, 301.103, 0, 0, 0, 0, 293.042, 329.403, 2.5, -18.5, -2.5, 18.5, 284.427, 364.238, -2.5, -10.5, 2.5, 10.5, 289.5, 394.5, -5, -9.5, 5, 9.5, 292.273, 414.281, -13.5, 5, 13.5, -5, 312, 421.5, 0, 0, 0, 0, 334.246, 415.181, -9.67471, -5.66325, 9.67471, 5.66325, 367.958, 419.676, 0, 0, 0, 0, 393.268, 414.045, -9.67471, 9.43874, 9.67471, -9.43874, 418.151, 411.435, 0, 0, 0, 0, 420.773, 392.706, 0, 0, 0, 0, 413.282, 373.603, 0, 0, 0, 0, 415.529, 353.75 )
+}
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2( 0.6, 0.6 )
@@ -51,3 +59,18 @@ offset = Vector2( -116.698, -30.0424 )
 position = Vector2( 247.151, 79.003 )
 texture = ExtResource( 4 )
 offset = Vector2( -116.843, 33.413 )
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 485.751, 5.55627 )
+rotate = false
+
+[node name="Peasant" parent="Path2D/PathFollow2D" instance=ExtResource( 6 )]
+position = Vector2( 5.65686, -1.06066 )
+scale = Vector2( 0.4, 0.4 )
+
+[node name="Peasant2" parent="Path2D/PathFollow2D" instance=ExtResource( 6 )]
+position = Vector2( -8.48529, -2.82843 )
+scale = Vector2( 0.4, 0.4 )
