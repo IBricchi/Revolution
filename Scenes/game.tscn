@@ -81,7 +81,8 @@ offset = Vector2( -116.843, 33.413 )
 curve = SubResource( 1 )
 
 [node name="ui" parent="." instance=ExtResource( 8 )]
-margin_right = 0.0
+margin_right = 96.0
+margin_bottom = 164.0
 
 [node name="Second Path" type="Path2D" parent="."]
 curve = SubResource( 2 )

@@ -46,7 +46,7 @@ func change_rad_color(new_val):
 	$rad/rad.update()
 
 func _tower_placed():
-	if in_valid_pos:
+	if in_valid_pos and follow_mouse:
 		$icon.disconnect("button_up", self, "_tower_palced")
 		follow_mouse = false
 		$rad/rad.color_mode = 0

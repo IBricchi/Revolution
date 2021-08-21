@@ -8,7 +8,7 @@ var hit_limit: int = 1
 var time_limit: float = -1
 
 func _ready():
-	connect("area_entered", self, "_entered")
+	connect("body_entered", self, "_entered")
 
 func _physics_process(delta):
 	if target != null:
@@ -16,12 +16,13 @@ func _physics_process(delta):
 		check_timer(delta)
 
 func _entered(obj):
+	print(obj.get_name())
 	if obj.is_in_group("enemy"):
 		damage(obj)
 		check_hit()
 
 func damage(obj):
-	obj.damage(power)
+	obj.take_damage(power)
 	
 func check_hit():
 	if hit_limit != -1:

@@ -10,7 +10,7 @@ var move_direction = 0
 var speed = 400
 var time_since_last_anim : float = 0
 var time_between_animations : float = rand_range(0.15, 0.4)
-
+var health = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,6 +50,10 @@ func arrived_at_castle():
 	
 	self.queue_free()
 
+func take_damage(ammount):
+	health -= ammount;
+	if health <= 0:
+		got_killed()
 
 func set_remote_path(path : Node2D):
 	path_follow = path
