@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FlameMagic.ogg-6b44f1b0bc340993dd120b6a76654232.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/FlameMagic.ogg"
+dest_files=[ "res://.import/FlameMagic.ogg-6b44f1b0bc340993dd120b6a76654232.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

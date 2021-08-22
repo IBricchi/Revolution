@@ -61,15 +61,20 @@ func on_valid_position():
 	return true
 
 func _input(event):
-	if follow_mouse and event is InputEventMouseMotion:
-		position = event.position
-		if not in_valid_pos == on_valid_position():
-			in_valid_pos = not in_valid_pos
-			change_rad_color(in_valid_pos)
-	if follow_mouse and event is InputEventMouseButton:
-		if event.pressed and event.button_index == BUTTON_RIGHT:
-			get_parent().remove_child(self)
-			queue_free()
+	if follow_mouse :
+		if event is InputEventMouseMotion:
+			position = event.position
+			if not in_valid_pos == on_valid_position():
+				in_valid_pos = not in_valid_pos
+				change_rad_color(in_valid_pos)
+		elif ((event is InputEventMouseButton and # check if right click
+			event.pressed and
+			event.button_index == BUTTON_RIGHT) or
+			(event is InputEventKey and # check for escape button
+			event.pressed and
+			event.scancode == KEY_ESCAPE)):
+				get_parent().remove_child(self)
+				queue_free()
 
 func change_rad_color(new_val):
 	$rad/rad.color_mode = 1 if in_valid_pos else 2
