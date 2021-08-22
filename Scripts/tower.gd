@@ -20,7 +20,8 @@ var multiple_hits : bool
 var is_active: bool = false
 var wait_time_max: float = 5
 var wait_time: float = 0
-
+var power: int = 1
+var proj_color: Color = Color.purple
 
 func set_wait_time(val):
 	wait_time_max = val
@@ -34,6 +35,9 @@ func set_pos(gp):
 func set_icon(in_icon):
 	$icon.icon = in_icon
 
+func set_power(in_power):
+	power = in_power
+
 func set_rad(in_rad):
 	$rad/rad.shape.radius = in_rad
 	
@@ -46,7 +50,8 @@ func set_shot_speed(val):
 func set_projectile_lifetime(val):
 	projectile_lifetime = val
 
-
+func set_color(color):
+	proj_color = color
 
 var in_col: Array = []
 func _on_col_enter(obj):
@@ -138,5 +143,7 @@ func shoot_at(target):
 	var proj = projectile.instance()
 	add_child(proj)
 	proj.set_target(target)
+	proj.set_power(power)
 	proj.set_multiple_hits(multiple_hits)
 	proj.set_death_timer(projectile_lifetime)
+	proj.set_color(proj_color)

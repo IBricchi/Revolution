@@ -19,10 +19,15 @@ func _ready():
 func set_speed(val):
 	speed = val
 
+func set_power(in_power):
+	power = in_power
 
 func set_multiple_hits(val):
 	multiple_hits = val
-	
+
+func set_color(color):
+	$CPUParticles2D.color = color
+
 func _physics_process(delta):
 	if target != null:
 		position += move_dir * delta * speed
