@@ -3,7 +3,7 @@ extends Node2D
 var enemies = []
 
 var castle_hitpoints : int = 100 setget set_castle_hp
-export var money : int = 90 setget set_money
+export var money : int = 60 setget set_money
 
 onready var wavetimer : Timer = $WaveTimer
 onready var ysort : YSort = $"Enemies Ysort"
@@ -12,6 +12,8 @@ onready var path2 : Path2D = $"Second Path"
 onready var path3 : Path2D = $"Third Path"
 onready var ui : Node = $"ui"
 onready var hpbar : Control = $HealthBar
+onready var castleaudio = $AudioStreamPlayer2
+var big_guy_number = 0
 
 var peasant : Resource = preload("res://Scenes/Peasant.tscn")
 var peasantpath : Resource = preload("res://Scenes/PeasantPath.tscn")
@@ -29,12 +31,13 @@ func _process(delta):
 		game_over()
 	if enemies.empty():
 		wave_start()
+		big_guy_number = 0
 
 func wave_start(): 
-	set_money(money + 20)
+	set_money(money + 40)
 	if castle_hitpoints > 0 : 
 		Global.wave_number += 1
-	var peasant_number = int(Global.wave_number * 5 *rand_range(1,2.5))
+	var peasant_number = int(Global.wave_number * 8)
 	
 	for i in range(peasant_number):
 		var prob : float = randf()
@@ -55,6 +58,7 @@ func wave_start():
 		
 		yield(get_tree().create_timer(0.20), "timeout")
 
+
 func game_over():
 	var a = get_tree().get_root();
 	var b = a.get_children();
@@ -67,7 +71,8 @@ func game_over():
 func set_money(newval):
 	money = newval
 	ui.display_money(newval)
-	
+
+
 func set_castle_hp(newval):
 	castle_hitpoints = newval
 	hpbar.display_health(newval)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/death_screen.gd" type="Script" id=1]
 [ext_resource path="res://Assets/FontResource/ui-label.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Assets/FontResource/subtitle.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Assets/Sounds/Meteor_ImpactObject_Stereo_01.wav" type="AudioStream" id=4]
 
 [node name="death_screen" type="MarginContainer"]
 anchor_right = 1.0
@@ -86,3 +87,6 @@ margin_bottom = 44.0
 custom_fonts/font = ExtResource( 2 )
 text = "Start Over"
 flat = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )

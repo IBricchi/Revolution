@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/smalldeath4.ogg-feadf43571c3518140b8974066c8d9b5.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/smalldeath4.ogg"
+dest_files=[ "res://.import/smalldeath4.ogg-feadf43571c3518140b8974066c8d9b5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

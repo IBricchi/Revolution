@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/castlebreak.wav-f9521e74e6f94d1406f44e17e8f844ca.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/castlebreak.wav"
+dest_files=[ "res://.import/castlebreak.wav-f9521e74e6f94d1406f44e17e8f844ca.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

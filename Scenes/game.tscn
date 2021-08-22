@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://land_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_02.png" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Scripts/Beam.gd" type="Script" id=9]
 [ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Sounds/loop1.mp3" type="AudioStream" id=11]
+[ext_resource path="res://Assets/Sounds/castlebreak.wav" type="AudioStream" id=12]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -113,5 +114,8 @@ script = ExtResource( 6 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 autoplay = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [connection signal="timeout" from="WaveTimer" to="." method="_on_WaveTimer_timeout"]

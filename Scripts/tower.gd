@@ -136,7 +136,7 @@ func _physics_process(delta):
 			shoot_at(target)
 			wait_time = wait_time_max
 	else:
-		wait_time -= delta
+		wait_time -= 3 * delta if is_active else delta
 
 const projectile = preload("res://Scenes/projectile.tscn")
 func shoot_at(target):

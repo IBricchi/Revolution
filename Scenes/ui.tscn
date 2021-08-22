@@ -45,6 +45,8 @@ margin_right = 76.0
 margin_bottom = 109.0
 
 [node name="tower" parent="margin/list/cont-1" instance=ExtResource( 2 )]
+radius = 50
+wait_time = 3.5
 proj_color = Color( 0.803922, 1, 0, 1 )
 
 [node name="cont-2" type="CenterContainer" parent="margin/list"]
@@ -55,10 +57,11 @@ margin_bottom = 199.0
 [node name="tower" parent="margin/list/cont-2" instance=ExtResource( 2 )]
 icon = ExtResource( 5 )
 tower_type = 1
-radius = 60
+radius = 70
 price = 100
+shot_speed = 150.0
 multiple_hits = true
-wait_time = 4.0
+wait_time = 6.0
 
 [node name="cont-3" type="CenterContainer" parent="margin/list"]
 margin_top = 219.0
@@ -68,9 +71,9 @@ margin_bottom = 289.0
 [node name="tower" parent="margin/list/cont-3" instance=ExtResource( 2 )]
 icon = ExtResource( 1 )
 tower_type = 2
-radius = 60
-price = 200
+price = 150
 power = 2
+shot_speed = 300.0
 projectile_lifetime = 3.0
-wait_time = 1.0
+wait_time = 2.0
 proj_color = Color( 0.964706, 0.0117647, 0.0784314, 1 )
