@@ -2,7 +2,7 @@ extends Node2D
 
 var enemies = []
 
-var castle_hitpoints : int = -100 setget set_castle_hp
+var castle_hitpoints : int = 100 setget set_castle_hp
 export var money : int = 90 setget set_money
 
 onready var wavetimer : Timer = $WaveTimer
