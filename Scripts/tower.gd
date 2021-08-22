@@ -16,7 +16,19 @@ var in_valid_pos: bool = false
 var price : int
 var shot_speed : float
 var projectile_lifetime : float
+var multiple_hits : bool 
+var is_active: bool = false
+var wait_time_max: float = 5
+var wait_time: float = 0
 
+
+func set_wait_time(val):
+	wait_time_max = val
+
+func set_multiple_hits(val):
+	multiple_hits = val
+	
+	
 func set_icon(in_icon):
 	$icon.icon = in_icon
 
@@ -31,6 +43,8 @@ func set_shot_speed(val):
 
 func set_projectile_lifetime(val):
 	projectile_lifetime = val
+
+
 
 var in_col: Array = []
 func _on_col_enter(obj):
@@ -52,13 +66,17 @@ func _input(event):
 		if not in_valid_pos == on_valid_position():
 			in_valid_pos = not in_valid_pos
 			change_rad_color(in_valid_pos)
+	if follow_mouse and event is InputEventMouseButton:
+		if event.pressed and event.button_index == BUTTON_RIGHT:
+			get_parent().remove_child(self)
+			queue_free()
 
 func change_rad_color(new_val):
 	$rad/rad.color_mode = 1 if in_valid_pos else 2
 	$rad/rad.update()
 
 func _tower_placed():
-	if in_valid_pos and follow_mouse:
+	if in_valid_pos and follow_mouse and $"/root/game".money >= price:
 		$icon.disconnect("button_up", self, "_tower_placed")
 		follow_mouse = false
 		$rad/rad.color_mode = 0
@@ -68,18 +86,17 @@ func _tower_placed():
 var in_rad: Array = []
 func _on_rad_enter(obj):
 	in_rad.push_back(obj)
+	
 func _on_rad_exit(obj):
 	var pos = in_rad.find(obj)
 	if pos != -1:
 		in_rad.remove(pos)
 
-var is_active: bool = false
-var wait_time_max: float = 5
-var wait_time: float = 0
+
 func _physics_process(delta):
 	if is_active and not follow_mouse and wait_time <= 0:
 		# largest int godot handles
-		var min_idx: int = 9223372036854775807
+		var min_idx: int = 9223372036854775807  # savage
 		var target = null
 		for obj in in_rad:
 			if obj.is_in_group("enemy"):
@@ -98,4 +115,5 @@ func shoot_at(target):
 	var proj = projectile.instance()
 	add_child(proj)
 	proj.set_target(target)
+	proj.set_multiple_hits(multiple_hits)
 	proj.set_death_timer(projectile_lifetime)

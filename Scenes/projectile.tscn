@@ -1,8 +1,12 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/projectile.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Particles/star_07.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.00334448, 1 ), 0.0, 1.39684, 0, 0, Vector2( 0.986622, 0.0329546 ), 0.0, 0.0, 0, 0 ]
 
 [node name="projectile" type="Area2D" groups=[
 "projectile",
@@ -23,3 +27,22 @@ hue_variation_random = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="ExplosionParticles" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.88
+randomness = 0.92
+lifetime_randomness = 0.86
+local_coords = false
+draw_order = 1
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 30.0
+spread = 90.0
+gravity = Vector2( 0, 0 )
+angular_velocity = 10.0
+scale_amount = 0.15
+scale_amount_random = 0.1
+scale_amount_curve = SubResource( 2 )

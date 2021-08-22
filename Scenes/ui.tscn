@@ -43,7 +43,9 @@ margin_bottom = 88.0
 icon = ExtResource( 3 )
 flat = true
 script = ExtResource( 2 )
-radius = 35
+radius = 40
+price = 30
+wait_time = 3.0
 
 [node name="tower-2" type="Button" parent="margin/list"]
 margin_top = 92.0
@@ -53,5 +55,7 @@ icon = ExtResource( 1 )
 flat = true
 script = ExtResource( 2 )
 tower_type = 1
-radius = 50
-price = 40
+radius = 60
+price = 100
+multiple_hits = true
+wait_time = 4.0

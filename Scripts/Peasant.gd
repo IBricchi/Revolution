@@ -3,23 +3,29 @@ extends KinematicBody2D
 var offset_from_path : Vector2 =  Vector2(rand_range(-6,6) , rand_range(-6,6)) 
 onready var game : Node = $"/root/game"
 onready var deathparticles : CPUParticles2D = $deathparticles
-onready var deathparticles2 : CPUParticles2D = $deathparticles2
+onready var damageparticles : CPUParticles2D = $damage_particles
 onready var deathtimer = $deathtimer
 
 var path_follow 
 
 var move_direction = 0
-var speed = rand_range(30,35)
+var speed = rand_range(35,40)
 var time_since_last_anim : float = 0
 var time_between_animations : float = rand_range(0.15, 0.4)
 var health = 1
+var is_big : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# set visible to false until first position is set to avoid
-	# glitchy appearances at (0, 0) between instantiation and setting pos
+	if randf() < 0.04:
+		is_big = true
+		scale.x *= 2.5
+		scale.y *= 2.5
+		offset_from_path = Vector2(0 , -2)
+		health *= 8
+		speed -= 10
 	visible = false
-	speed += Global.wave_number * 100.5
+	speed += Global.wave_number * 1.5
 
 
 func _physics_process(delta):
@@ -42,17 +48,18 @@ func MovementLoop(delta : float) :
 	visible = true
 	move_direction = pos.angle_to_point(prepos)  
 	if move_direction <= PI/ 2 and move_direction >= - PI / 2: 
-		scale.x = -1
+		scale.x = -2.5 if is_big else -1 
 	else:
-		scale.x = 1
+		scale.x =  2.5 if is_big else  1 
 
 func arrived_at_castle():
 	game.enemies.erase(self)
-	game.castle_hitpoints -= 1
-	
+	if is_big:
+		game.castle_hitpoints -= 10 if is_big else 1
 	self.queue_free()
 
 func take_damage(ammount):
+	damageparticles.emitting = true
 	health -= ammount;
 	if health <= 0:
 		got_killed()
@@ -66,10 +73,10 @@ func got_killed():
 		can_die = false
 		game.enemies.erase(self)
 		Global.enemies_defeated += 1
-		game.money += 5
+		game.money += 10 if is_big else 1
 
 		deathparticles.emitting = true
-		deathparticles2.emitting = true
+		damageparticles.emitting = true
 		deathtimer.start(0.5)
 
 

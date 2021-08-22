@@ -18,7 +18,7 @@ texture = ExtResource( 1 )
 scale = Vector2( 0.4, 0.4 )
 polygon = PoolVector2Array( 15.0858, 21.4039, 15.0858, -24.0319, -8.07759, -23.141, -16.9866, -11.7821, -18.3229, 14.054, -13.2003, 21.4039 )
 
-[node name="deathparticles2" type="CPUParticles2D" parent="."]
+[node name="damage_particles" type="CPUParticles2D" parent="."]
 emitting = false
 lifetime = 0.5
 one_shot = true

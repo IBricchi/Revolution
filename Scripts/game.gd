@@ -3,7 +3,7 @@ extends Node2D
 var enemies = []
 
 var castle_hitpoints : int = 100 setget set_castle_hp
-export var money : int = 100 setget set_money
+export var money : int = 90 setget set_money
 
 onready var wavetimer : Timer = $WaveTimer
 onready var ysort : YSort = $"Enemies Ysort"
@@ -31,10 +31,10 @@ func _process(delta):
 		wave_start()
 
 func wave_start(): 
-	set_money(money + Global.wave_number * 50)
+	set_money(money + 20)
 	if castle_hitpoints > 0 : 
 		Global.wave_number += 1
-	var peasant_number = int(Global.wave_number * 5 *rand_range(1,2))
+	var peasant_number = int(Global.wave_number * 5 *rand_range(1,2.5))
 	
 	for i in range(peasant_number):
 		var prob : float = randf()
@@ -53,7 +53,7 @@ func wave_start():
 		
 		peas.set_remote_path(remotepath)
 		
-		yield(get_tree().create_timer(0.25), "timeout")
+		yield(get_tree().create_timer(0.20), "timeout")
 
 func game_over():
 	var a = get_tree().get_root();

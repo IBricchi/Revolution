@@ -22,6 +22,8 @@ export var radius: int = 25
 export var price : int = 15
 export var shot_speed : float = 200
 export var projectile_lifetime : float = 2
+export var multiple_hits : bool = false
+export var wait_time : float = 5
 
 func _ready():
 	connect("button_up", self, "_on_button_up")
@@ -35,4 +37,6 @@ func _on_button_up():
 	new_tower.set_price(price)
 	new_tower.set_shot_speed(shot_speed)
 	new_tower.set_projectile_lifetime(projectile_lifetime)
+	new_tower.set_multiple_hits(multiple_hits)
+	new_tower.set_wait_time(wait_time)
 	
