@@ -28,7 +28,9 @@ func set_wait_time(val):
 func set_multiple_hits(val):
 	multiple_hits = val
 	
-	
+func set_pos(gp):
+	global_position = gp
+
 func set_icon(in_icon):
 	$icon.icon = in_icon
 
@@ -75,6 +77,12 @@ func _input(event):
 			event.scancode == KEY_ESCAPE)):
 				get_parent().remove_child(self)
 				queue_free()
+	elif (event is InputEventMouseButton and
+		event.pressed and
+		event.button_index == BUTTON_LEFT):
+			var evLocal: InputEvent = make_input_local(event)
+			if not Rect2(Vector2(0,0),$col/col.scale).has_point(evLocal.position):
+				self.tower_selected = false
 
 func change_rad_color(new_val):
 	$rad/rad.color_mode = 1 if in_valid_pos else 2
@@ -83,10 +91,20 @@ func change_rad_color(new_val):
 func _tower_placed():
 	if in_valid_pos and follow_mouse and $"/root/game".money >= price:
 		$icon.disconnect("button_up", self, "_tower_placed")
+		$icon.connect("button_up", self, "_tower_select")
 		follow_mouse = false
 		$rad/rad.color_mode = 0
 		$rad/rad.update()
 		$"/root/game".set_money($"/root/game".money - price)
+
+var tower_selected: bool = false setget select_tower
+func select_tower(new_val):
+	tower_selected = new_val
+	$rad/rad.color_mode = 1 if tower_selected else 0
+	$rad/rad.update()
+
+func _tower_select():
+	self.tower_selected = not tower_selected	
 
 var in_rad: Array = []
 func _on_rad_enter(obj):

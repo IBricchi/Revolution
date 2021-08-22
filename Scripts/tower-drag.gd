@@ -19,7 +19,12 @@ func set_tower_type(new_val):
 	
 
 export var radius: int = 25
-export var price : int = 15
+export var price : int = 15 setget set_price
+func set_price(new_val):
+	price = new_val
+	if $label:
+		$label.text="%d Florins" % price
+
 export var shot_speed : float = 200
 export var projectile_lifetime : float = 2
 export var multiple_hits : bool = false
@@ -32,6 +37,7 @@ func _on_button_up():
 	var new_tower = tower_scene.instance()
 	get_tree().get_root().add_child(new_tower)
 	new_tower.follow_mouse = true
+	new_tower.set_pos(get_global_mouse_position())
 	new_tower.set_icon(icon)
 	new_tower.set_rad(radius) 
 	new_tower.set_price(price)

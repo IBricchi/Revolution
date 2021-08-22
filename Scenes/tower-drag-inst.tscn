@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/tower-drag.gd" type="Script" id=1]
+[ext_resource path="res://Assets/PNG/Default size/Structure/medievalStructure_17.png" type="Texture" id=2]
+
+[node name="tower" type="Button"]
+margin_right = 76.0
+margin_bottom = 70.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 2 )
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+radius = 40
+price = 30
+wait_time = 3.0
+
+[node name="label" type="Label" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 6.0226
+margin_bottom = 20.0226
+text = "30 Florins"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
